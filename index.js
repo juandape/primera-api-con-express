@@ -8,7 +8,7 @@ const {
   handleCreateContact,
   handleEditContact,
   handleDeleteContact,
-  getLength
+  getLength,
 } = require("./controller");
 
 const app = express();
@@ -32,6 +32,7 @@ app.post("/api/contacts", handleCreateContact);
 app.patch("/api/contacts/:id", handleEditContact);
 
 app.delete("/api/contacts/:id", handleDeleteContact);
+
 app.listen(port, () =>
   console.log(`Server running at http://localhost:${port}!`)
 );
