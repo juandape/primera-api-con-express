@@ -10,25 +10,22 @@ const {
   handleDeleteContact,
 } = require("./controller");
 
-// const newPerson = {
-//   id: Date.now(),
-//   name: "Nick Fury",
-//   number: "69-4323435",
-// };
-
 const app = express();
 const port = 8080;
 const date = Date();
-// const people = persons.length;
 
 app.use(express.json());
 app.use(bodyParser.json());
 morganBody(app);
 
-// app.get("/info", (req, res) =>
-//   res.send(`Phonebook has info for ${people} people --  ${date}`)
-// );
-app.get("/api/persons", handleGetAllContacts);
+const all = ()=>{
+  app.get("/api/persons", handleGetAllContacts);
+}
+all()
+
+app.get("/info", (req, res) =>
+  res.send(`Phonebook has info for ${all.length} people --  ${date}`)
+);
 
 app.get("/api/persons/:id", handleGetByIdContact);
 
