@@ -10,20 +10,34 @@ function getAllContacts() {
 }
 
 function getContactsById(id) {
-    const record = table.findById(id)
-    return record
+  const record = table.findById(id);
+  return record;
 }
 
-function createContact(contact) {}
+function createContact(contact) {
+  const record = table.insert(contact);
+  return record;
+}
 
-function updateContact(id) {}
+function editContact(id, contact) {
+const contactEdit = {
+    id,
+    ...contact
+}
+const record = table.update(contactEdit)
+return record
 
-function deleteContact(id) {}
+}
+
+function deleteContact(id) {
+  const record = table.remove(id);
+  return record;
+}
 
 module.exports = {
   getAllContacts,
   getContactsById,
   createContact,
-  updateContact,
+  editContact,
   deleteContact,
 };
