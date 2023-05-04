@@ -8,6 +8,7 @@ const {
   handleCreateContact,
   handleEditContact,
   handleDeleteContact,
+  getLength
 } = require("./controller");
 
 const app = express();
@@ -18,22 +19,19 @@ app.use(express.json());
 app.use(bodyParser.json());
 morganBody(app);
 
-const all = ()=>{
-  app.get("/api/persons", handleGetAllContacts);
-}
-all()
+app.get("/api/contacts", handleGetAllContacts);
 
 app.get("/info", (req, res) =>
-  res.send(`Phonebook has info for ${all.length} people --  ${date}`)
+  res.send(`Phonebook has info for ${getLength()} people --  ${date}`)
 );
 
-app.get("/api/persons/:id", handleGetByIdContact);
+app.get("/api/contacts/:id", handleGetByIdContact);
 
-app.post("/api/persons", handleCreateContact);
+app.post("/api/contacts", handleCreateContact);
 
-app.patch("/api/persons/:id", handleEditContact);
+app.patch("/api/contacts/:id", handleEditContact);
 
-app.delete("/api/persons/:id", handleDeleteContact);
+app.delete("/api/contacts/:id", handleDeleteContact);
 app.listen(port, () =>
   console.log(`Server running at http://localhost:${port}!`)
 );

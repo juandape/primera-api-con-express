@@ -20,18 +20,22 @@ function createContact(contact) {
 }
 
 function editContact(id, contact) {
-const contactEdit = {
+  const contactEdit = {
     id,
-    ...contact
-}
-const record = table.update(contactEdit)
-return record
-
+    ...contact,
+  };
+  const record = table.update(contactEdit);
+  return record;
 }
 
 function deleteContact(id) {
   const record = table.remove(id);
   return record;
+}
+
+function getLength() {
+  const records = table.findAll();
+  return records.length;
 }
 
 module.exports = {
@@ -40,4 +44,5 @@ module.exports = {
   createContact,
   editContact,
   deleteContact,
+  getLength,
 };

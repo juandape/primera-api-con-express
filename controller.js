@@ -4,6 +4,7 @@ const {
   createContact,
   editContact,
   deleteContact,
+  getLength
 } = require("./model");
 
 function handleGetAllContacts(req, res) {
@@ -56,4 +57,5 @@ module.exports = {
   handleCreateContact,
   handleEditContact,
   handleDeleteContact,
+  getLength
 };
