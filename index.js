@@ -1,5 +1,4 @@
 const express = require("express");
-// const morgan = require("morgan");
 const morganBody = require("morgan-body");
 const bodyParser = require("body-parser");
 
@@ -28,7 +27,7 @@ const persons = [
 
 const newPerson = {
   id: Date.now(),
-  name: "Scott Lang",
+  name: "",
   number: "69-4323435",
 };
 
@@ -64,17 +63,14 @@ app.delete("/api/persons/:id", (req, res) => {
 });
 
 app.post("/api/persons", (req, res) => {
-  const newPersons = [...persons, newPerson];
-  // const { name, number } = req.params;
-  persons.map((person) => {
-    if (newPerson.name === person.name) {
-      return res.status(404).json({ message: "Person already exist" });
-    } else if (newPerson.number === "") {
-      return res.status(404).json({ message: "Number is empty" });
-    }
-  });
+  const { name, number } = req.body;
+  if (!name || !number) {
+    return res.status(400).json({ message: "Name or number is missing" });
+  }
+  const newPersons = persons.concat(newPerson);
   return res.json(newPersons);
 });
+
 
 // morgan.token("body", (req) => {
 //   return JSON.stringify(req.body);
