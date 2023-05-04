@@ -6,7 +6,7 @@ Create an API using Express
 
 ## Screenshot
 ![print screen](./assets/print-screen1.png)
-![print screen](./assets/print-screen2.png)
+![print screen](./assets/print-screen.png)
 ## My process
 ### Built with
 - Semantic markup using vscode editor
