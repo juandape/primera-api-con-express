@@ -9,7 +9,7 @@ const {
 
 function handleGetAllContacts(req, res) {
   const records = getAllContacts();
-  res.json(records);
+  res.status(200).json(records);
 }
 
 function handleGetByIdContact(req, res) {
@@ -18,7 +18,7 @@ function handleGetByIdContact(req, res) {
   if (Object.keys(record).length === 0) {
     return res.status(404).json({ message: "Contact not found" });
   }
-  return res.json(record);
+  return res.status(200).json(record);
 }
 
 function handleCreateContact(req, res) {
@@ -27,12 +27,11 @@ function handleCreateContact(req, res) {
   const record = createContact(contact);
   if (!number) {
     return res.status(400).json({ message: "Number is empty" });
-  }
-
-  if (name === contact.name) {
+  }else if (name === contact.name) {
     return res.status(400).json({ message: "Contact already exist" });
+  }else{
+  return res.status(201).json(record);
   }
-  return res.json(record);
 }
 
 function handleEditContact(req, res) {
@@ -42,13 +41,13 @@ function handleEditContact(req, res) {
   if (Object.keys(record).length === 0) {
     return res.status(404).json({ message: "Contact not found" });
   }
-  return res.json(record);
+  return res.status(202).json(record);
 }
 
 function handleDeleteContact(req, res) {
   const { id } = req.params;
   deleteContact(id);
-  return res.json({ message: "Contact Deleted" });
+  return res.status(204).json({ message: "Contact Deleted" });
 }
 
 module.exports = {
