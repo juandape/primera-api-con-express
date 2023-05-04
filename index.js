@@ -22,7 +22,7 @@ morganBody(app);
 app.get("/api/contacts", handleGetAllContacts);
 
 app.get("/info", (req, res) =>
-  res.send(`Phonebook has info for ${getLength()} people --  ${date}`)
+  res.send(`Phonebook has info for ${getLength()} contacts --  ${date}`)
 );
 
 app.get("/api/contacts/:id", handleGetByIdContact);
