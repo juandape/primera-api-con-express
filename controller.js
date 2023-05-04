@@ -15,41 +15,39 @@ function handleGetByIdContact(req, res) {
   const { id } = req.params;
   const record = getContactsById(id);
   if (Object.keys(record).length === 0) {
-    return res.status(404).json({ message: "COntact not found" });
+    return res.status(404).json({ message: "Contact not found" });
   }
   return res.json(record);
 }
 
 function handleCreateContact(req, res) {
   const contact = req.body;
-  const record = createContact(contact)
+  const { name, number } = contact;
+  const record = createContact(contact);
+  if (!number) {
+    return res.status(400).json({ message: "Number is empty" });
+  }
+
+  if (name === contact.name) {
+    return res.status(400).json({ message: "Contact already exist" });
+  }
   return res.json(record);
 }
 
-//   persons.map((person)=>{
-//   if (newPerson.name === person.name) {
-//     return res.status(404).json({ message: "Person already exist" });
-//   } else if (newPerson.number === "") {
-//     return res.status(404).json({ message: "Number is empty" });
-//   }
-// })
-//   const newPersons = persons.concat(newPerson);
-//   return res.json(newPersons);
-
 function handleEditContact(req, res) {
-const {id} = req.params
-const contact = req.body
-const record = editContact(id, contact)
-if (Object.keys(record).length === 0) {
-  return res.status(404).json({ message: "Contact not found" });
-}
-return res.json(record)
+  const { id } = req.params;
+  const contact = req.body;
+  const record = editContact(id, contact);
+  if (Object.keys(record).length === 0) {
+    return res.status(404).json({ message: "Contact not found" });
+  }
+  return res.json(record);
 }
 
 function handleDeleteContact(req, res) {
   const { id } = req.params;
-  deleteContact(id)
-  return res.json({message: "Contact Deleted"})
+  deleteContact(id);
+  return res.json({ message: "Contact Deleted" });
 }
 
 module.exports = {
