@@ -5,7 +5,8 @@
 Create an API using Express
 
 ## Screenshot
-![print screen](./assets/print-screen.png)
+![print screen](./assets/print-screen1.png)
+![print screen](./assets/print-screen2.png)
 ## My process
 ### Built with
 - Semantic markup using vscode editor
@@ -14,7 +15,7 @@ Create an API using Express
 - Chrome Browser
 
 ## What I learned
-I learn and practice how to create an API using Express NodeJs
+I learn and practice how to create an API using Express NodeJs and models
 
 ## Author
 Juan David Peña  
